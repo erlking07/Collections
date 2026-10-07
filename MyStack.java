@@ -58,7 +58,7 @@ public class MyStack
     }
     
     /**
-     *  Returns the number of elements stored in the stack
+     * Returns the number of elements stored in the stack
      * 
      * @return size of stack;
      */
@@ -75,6 +75,11 @@ public class MyStack
         return (end >= stack.length);
     }
     
+    /**
+     * Returns the contents of the stack from top to bottom.
+     * 
+     * @return contents of the stack;
+     */
     public String toString() {
         String str = "";
         for(int i = end -1;i >= 1; i--) {
