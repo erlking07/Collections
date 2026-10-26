@@ -1,14 +1,16 @@
+import java.util.NoSuchElementException;
 
 /**
- * Write a description of class myQueue here.
+ * Standurd implementatoin of a queue.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author (Gibson Goldenberg)
+ * @version (.8)
+ * @param E type of elements
  */
-public class MyQueue
+public class MyQueue<E>
 {
     // instance variables - replace the example below with your own
-    private int[] queue;
+    private E[] queue;
     private int front;
     private int back;
     /**
@@ -16,45 +18,89 @@ public class MyQueue
      */
     public MyQueue() {
         // initialise instance variables
-        queue = new int[100];
+        queue = (E[])new Object[100];
         front = 0;
         back = -1;
     }
     
     public MyQueue(int maxSize) {
         // initialise instance variables
-        queue = new int[maxSize];
+        queue = (E[])new Object[maxSize];
         front = 0;
         back = -1;
     }
-
-    public void enqueue(int element) {
-        back = (back + 1) % queue.length;
-        queue[back] = element;
+    
+    /**
+     * Adds an element to the back of the queue.
+     * @param element The element that is added to the back
+     * @throws IllegalArgumentException If queue is full
+     */
+    public void enqueue(E element) {
+        if(isFull()) {
+            throw new IllegalStateException("Queue is Full.");
+        }else {
+            back = (back + 1) % queue.length;
+            queue[back] = element;
+        }
     }
     
-    public int dequeue() {
-        int temp = queue[front];
-        front = (front + 1) % queue.length;
-        return temp;
+    /**
+     * Removes an element from the front of the queue.
+     * @return element The element that is removed from the front
+     * @throws NoSuchElementException If queue is empty
+     */
+    public E dequeue() {
+        if(isEmpty()) {
+           throw new NoSuchElementException("Queue is Empty."); 
+        } else {
+            E temp = queue[front];
+            queue[front] = null;
+            front = (front + 1) % queue.length;
+            return temp;
+        }
     }
     
+    /**
+     * Indicates whether the queue contains any elements.
+     * @return True if queue is empty else False
+     */
     public boolean isEmpty() {
-        return (back + 1) % queue.length == front;
+        return size() == 1;
     }
     
-    public int front() {
-        return front;
+     /**
+     *  Reads the element at the front of the queue.
+     * @return element at the front of the queue
+     * @throws NoSuchElementException If queue is empty
+     */
+    public E front() {
+        if(isEmpty()) {
+            throw new NoSuchElementException("Queue is Empty."); 
+        } else {
+        return queue[front];
+        }
     }
     
+    /**
+     * Returns the number of elements stored in the queue.
+     * @return number of elements stored in the queue
+     */
     public int size() {
         return Math.floorMod((back - front),queue.length) + 1;
     }
     
+    /**
+     * Indicates whether the queue has exhausted its available storage.
+     * @return True if queue is full else False
+     */
     public boolean isFull() {
         return size() == queue.length;
     }
     
+    /**
+     * Returns the contents of the queue from front to back.
+     * @return the contents of the queue from front to bac
+     */
     public String toString() {
         String str = "";
         int index = front;
@@ -67,15 +113,5 @@ public class MyQueue
         return str;
     }
     
-    public void test() {
-        enqueue(65);
-        enqueue(4);
-        enqueue(7);
-        enqueue(3);
-        enqueue(10);
-        dequeue();
-        dequeue();
-        System.out.println(toString());
-        System.out.println(size());
-    }
+
 }

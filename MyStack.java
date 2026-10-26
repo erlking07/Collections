@@ -1,42 +1,55 @@
+import java.util.*;
+
 
 /**
- * Write a description of class MyStack here.
+ * Standurd implementation of a stack.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author (Gibson Goldenberg)
+ * @version (.8)
+ * @param E type of element
  */
-public class MyStack
+public class MyStack<E>
 {
     private int end;
     //next spot to fill
-    private int[] stack;
+    private E[] stack;
     public MyStack() {
         end = 0;
-        stack = new int[100];
+        stack = (E[]) new Object[100];
     }
     
     public MyStack(int maxSize) {
         end = 0;
-        stack = new int[maxSize];
+        stack = (E[]) new Object[maxSize];
     }
     
     /**
      * Pushes an element to the stack
      * @param element The element that is pushed
+     * @throws IllegalStateException If stack is full;
      */
-    public void push(int element) {
+    public void push(E element) {
+        if (isFull()) {
+            throw new IllegalStateException("stack is full.");
+        } else {
         stack[end] = element;
         end++;
+        }
     }
-    
     /**
      * Pops the last element
      * 
-     * @return element at the end of the array;
+     * @return element at the end of the array
+     * @throws EmptyStackException If stack is empty;
      */
-    public int pop() {
-        end--;
-        return stack[end+1];
+    public E pop() {
+        if(isEmpty()) {
+            throw new EmptyStackException();
+        }else{
+            stack[end] = null;
+            end--;
+            return stack[end+1];
+        }
     }
     
     /**
@@ -52,9 +65,14 @@ public class MyStack
      *  Reads the element at the top of the stack.
      * 
      * @return top element of the stack;
+     * @throws EmptyStackException if queue is empty
      */
-    public int top() {
-      return stack[end];  
+    public E top() {
+        if(isEmpty()) {
+            throw new EmptyStackException();
+        }else {
+          return stack[end];  
+    }
     }
     
     /**
@@ -92,12 +110,6 @@ public class MyStack
     }
     
     public void test(){
-        push(4);
-        push(6);
-        pop();
-        pop();
-        System.out.println(size());
-        System.out.println(isEmpty());
-        System.out.println(toString());
+        
     }
 }
