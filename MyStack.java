@@ -46,8 +46,8 @@ public class MyStack<E>
         if(isEmpty()) {
             throw new EmptyStackException();
         }else{
-            stack[end] = null;
             end--;
+            stack[end] = null;
             return stack[end+1];
         }
     }
