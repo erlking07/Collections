@@ -54,7 +54,7 @@ public class MyStackLL<E>
             throw new EmptyStackException();
         }else {
           return (E) stack.getHead();  
-    }
+        }
     }
     
     /**

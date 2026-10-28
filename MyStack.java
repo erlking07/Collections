@@ -80,7 +80,7 @@ public class MyStack<E>
      * 
      * @return size of stack;
      */
-    public int size(){
+    public int size() {
         return end;
     }
     

@@ -1,3 +1,4 @@
+import java.util.NoSuchElementException;
 
 /**
  * Write a description of class MyLinkedList here.
@@ -50,6 +51,12 @@ public class MyLinkedList<E> {
      * @return element The element that is removed from the front
      */
     public E removeHead() {
+        if(isEmpty()) {
+            throw new NoSuchElementException("Linked List is Empty.");
+        }
+        if(size == 1) {
+            tail = null;
+        }
         E element = (E)head.getElement();
         head = head.getNext();
         size--;
@@ -61,6 +68,9 @@ public class MyLinkedList<E> {
      * @return element The element that in the front
      */
     public E getHead() {
+        if(isEmpty()) {
+            throw new NoSuchElementException("Linked List is Empty."); 
+        }
         return (E) head.getElement();
     }
     
