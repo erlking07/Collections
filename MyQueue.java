@@ -13,6 +13,7 @@ public class MyQueue<E>
     private E[] queue;
     private int front;
     private int back;
+    private int size;
     /**
      * Constructor for objects of class myQueue
      */
@@ -21,6 +22,7 @@ public class MyQueue<E>
         queue = (E[])new Object[100];
         front = 0;
         back = -1;
+        size = queue.length;
     }
     
     public MyQueue(int maxSize) {
@@ -28,6 +30,7 @@ public class MyQueue<E>
         queue = (E[])new Object[maxSize];
         front = 0;
         back = -1;
+        size = 0;
     }
     
     /**
@@ -41,6 +44,7 @@ public class MyQueue<E>
         }else {
             back = (back + 1) % queue.length;
             queue[back] = element;
+            size++;
         }
     }
     
@@ -56,6 +60,7 @@ public class MyQueue<E>
             E temp = queue[front];
             queue[front] = null;
             front = (front + 1) % queue.length;
+            size--;
             return temp;
         }
     }
@@ -86,7 +91,8 @@ public class MyQueue<E>
      * @return number of elements stored in the queue
      */
     public int size() {
-        return Math.floorMod((back - front),queue.length) + 1;
+        //return Math.floorMod((back - front + queue.length + 1),queue.length);
+        return size;
     }
     
     /**

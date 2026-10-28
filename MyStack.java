@@ -101,7 +101,7 @@ public class MyStack<E>
     public String toString() {
         String str = "";
         for(int i = end -1;i >= 1; i--) {
-            str = str + stack[i]+", ";
+            str = str + stack[i] + ", ";
         }
         if (end > 0) {
            str = str + stack[0]; 
@@ -109,7 +109,4 @@ public class MyStack<E>
         return str;
     }
     
-    public void test(){
-        
-    }
 }

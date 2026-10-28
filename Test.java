@@ -2,14 +2,22 @@
 public class Test
 {
     public static void main() {
-    MyQueueLL queue = new MyQueueLL<Integer>();
-    for(int i = 0; i < 100; i++) {
-        queue.enqueue(i);
+    MyQueue queue = new MyQueue<Integer>(100);
+    System.out.println(queue.size());
+    for(int i = 0; i < 100; i ++)
+    {
+        queue.enqueue(1);
     }
-    System.out.println(queue.toString());
-    for(int i = 0; i < 99; i ++) {
+    for(int i = 0; i < 99; i ++)
+    {
         queue.dequeue();
     }
+    for(int i = 0; i < 98; i ++)
+    {
+        queue.enqueue(1);
+    }
+    queue.enqueue(1);
+    System.out.println(queue.size());
     System.out.println(queue.toString());
 }
 }
