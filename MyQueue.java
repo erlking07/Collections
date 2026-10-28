@@ -22,7 +22,7 @@ public class MyQueue<E>
         queue = (E[])new Object[100];
         front = 0;
         back = -1;
-        size = queue.length;
+        size = 0;
     }
     
     public MyQueue(int maxSize) {
@@ -70,7 +70,7 @@ public class MyQueue<E>
      * @return True if queue is empty else False
      */
     public boolean isEmpty() {
-        return size() == 1;
+        return size() == 0;
     }
     
      /**
